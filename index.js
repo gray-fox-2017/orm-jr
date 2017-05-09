@@ -1,5 +1,22 @@
-"use strict"
+'use strict'
 
-import DBModel from "./models/db_model.js";
-import Cohort from "./models/cohort.js";
-import Student from "./models/student.js";
+const repl = require('repl');
+const DBModel = require("./models/db_model.js");
+// const Cohort = require("./models/cohort.js");
+const Student = require("./models/student.js");
+
+var input = process.argv;
+let replserver;
+if (input[2] == 'playtime'){
+  replserver = repl.start({
+    prompt: '\(\~\'v\'\)\~  ',
+    input: process.stdin,
+    output: process.stdout
+  })
+} else {
+  console.log('hoi');
+}
+
+var dbModel = new DBModel('./db/student.db');
+replserver.context.buat = dbModel;
+
