@@ -24,7 +24,7 @@ class Cohort {
   }
   
   static update(connection,cohort){
-    let query = `Update students set name = '${cohort.name}' where id = '${cohort.id}'`
+    let query = `Update cohorts set name = '${cohort.name}' where id = '${cohort.id}'`
     db.run(query,function(err){
       if(err){
         console.log(err);
@@ -86,9 +86,8 @@ class Cohort {
   }
   
   static findOrCreate(connection, cohort) {
-    var INSERT_QUERY  = `INSERT INTO cohorts (name) VALUES ('${cohort.name}', '${student.lastname}', '${student.cohort_id}')`
-    var CHECK_QUERY   = `SELECT * FROM students WHERE firstname = '${student.firstname}' AND lastname = '${student.lastname}'`
-
+    var INSERT_QUERY  = `INSERT INTO cohorts (name) VALUES ('${cohort.name}')`
+    var CHECK_QUERY   = `SELECT * FROM cohorts WHERE name = '${cohort.name}')` 
     db.all(CHECK_QUERY, function(err, data) {
       if(data.length) {
         console.log('data already exists');
@@ -98,7 +97,7 @@ class Cohort {
             if (err) {
               console.log(err);
             } else {
-              console.log("Student Added");
+              console.log("Cohort Added");
             }
           });
         });
@@ -106,6 +105,17 @@ class Cohort {
     })
   }
   
+  static findAll(connection,cohort = {},callback){
+    let query = `Select * from cohorts limit ${cohort.limit} offset ${cohort.offset}`
+    db.all(query,function(err,rows){
+      if(!err){
+        return callback(null,rows)
+      }
+      else{
+        return callback(err,null)
+      }      
+    })
+  }
   
 }
 
