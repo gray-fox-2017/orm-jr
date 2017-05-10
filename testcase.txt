@@ -1,0 +1,75 @@
+// CREATE STUDENT
+Student.create(dbModel.connection, new Student({first_name:'Windiana', last_name:'Krismanuya', id_cohort:1}));
+
+// UPDATE STUDENT
+Student.update(dbModel.connection, new Student({first_name:'Windi', last_name:'Krism', id_cohort:1, id:1}));
+
+// DELETE STUDENT
+Student.delete(dbModel.connection, 1)
+
+// FINDBYID STUDENT
+Student.findById(dbModel.connection, 3)
+
+// FINDALL STUDENT
+Student.findAll(dbModel.connection, {limit:2, offset:0}, function(err, data){
+  if(!err){
+    for(var i=0; i<data.length; i++){
+      console.log(data[i]);
+    }
+  }
+  else {
+    console.log(err);
+  }
+});
+
+// WHERE STUDENT
+Student.where(dbModel.connection, {first_name: 'Windiana'}, function(err, data){
+  if(!err){
+    for(var i=0; i<data.length; i++){
+      console.log(data[i]);
+    }
+  }
+  else {
+    console.log(err);
+  }
+});
+
+// FINDORCREATE STUDENT
+Student.findOrCreate(dbModel.connection, new Student({first_name: 'Windiana', last_name: 'Krismanuya', id_cohort:1}));
+
+
+// FINDALL COHORT
+Cohort.findAll(dbModel.connection, function(err, data){
+  if(!err){
+    for(var i=0; i<data.length; i++){
+      console.log(data[i]);
+    }
+  }
+  else {
+    console.log(err);
+  }
+});
+
+// CREATE COHORT
+Cohort.create(dbModel.connection, new Cohort({name:'whatsapp group'}));
+
+// UPDATE COHORT
+Cohort.update(dbModel.connection, new Cohort({name:'whatsapp group', id:1}));
+
+// DELETE COHORT
+Cohort.delete(dbModel.connection, 1);
+
+// FINDBYID COHORT
+Cohort.findById(dbModel.connection, 3);
+
+// WHERE COHORT
+Cohort.where(dbModel.connection, {name: 'whatsapp group'}, function(err, data){
+  if(!err){
+    for(var i=0; i<data.length; i++){
+      console.log(data[i]);
+    }
+  }
+  else {
+    console.log(err);
+  }
+});
