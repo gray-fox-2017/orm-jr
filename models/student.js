@@ -70,9 +70,9 @@ class Student {
     })
   }
 
-  static findAll(database,callback){
+  static findAll(database,callback,sub_query){
     database.serialize(()=>{
-      database.all('SELECT * FROM students;',callback)
+      database.all(`SELECT * FROM students LIMIT ${sub_query.limit} OFFSET ${sub_query.offset};` ,callback)
     })
   }
 
