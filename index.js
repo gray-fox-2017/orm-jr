@@ -13,19 +13,20 @@ import Student from "./models/student.js";
 // Student.create(dbModel.connection, new Student("Windana", "Krisnuyar", 1));
 // Student.create(dbModel.connection, new Student("Indiana", "Rismanuyar", 1));
 // Student.create(dbModel.connection, new Student("Diana", "Krismanuyar", 1));
+// Student.findOrCreate(dbModel.connection, new Student("Ana", "Krismanuyar", 1));
 //firstname, lastname, cohort_id, id
 // Student.update(dbModel.connection, new Student("Windi","Krism",1,1));
 // Student.findById(dbModel.connection,1);
 
-Student.findAll(dbModel.connection, function (err,data) {
-  if(!err){
-    for(var i = 0; i < data.length;i++){
-      console.log(data[i]);
-    }
-  } else {
-    console.log(err, "Error");
-  }
-}, {limit : 3, offset : 1 } )
+// Student.findAll(dbModel.connection, function (err,data) {
+//   if(!err){
+//     for(var i = 0; i < data.length;i++){
+//       console.log(data[i]);
+//     }
+//   } else {
+//     console.log(err, "Error");
+//   }
+// }, {limit : 3, offset : 1 } )
 //
 // Student.where(dbModel.connection, "firstname = 'Windi'",function(err,data) {
 //     if(!err){

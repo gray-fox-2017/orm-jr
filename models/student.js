@@ -82,6 +82,24 @@ class Student {
     })
   }
 
+  static findOrCreate(database,data){
+    database.serialize(()=>{
+      database.all(`SELECT * FROM students WHERE firstname = '${data.firstname}' AND lastname = '${data.lastname}' AND id_cohort = '${data.id_cohort}';`, function(err,rows) {
+        if (rows.length > 0){
+          console.log("Data already taken");
+        } else {
+          database.run(`INSERT INTO students(firstname,lastname,id_cohort) VALUES('${data.firstname}', '${data.lastname}', '${data.id_cohort}');`, function(err,result) {
+            if (err){
+              console.log(err);
+            } else {
+              console.log("FindorCreate Sukses");
+            }
+          })
+        }
+      })
+    })
+  }
+
 }
 
 export default Student
