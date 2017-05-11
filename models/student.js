@@ -63,10 +63,23 @@ class Student {
       })
     })
   }
-
-  static findAll(conn, value = {}) {
+  static findAll(conn) {
     db.serialize(function() {
-      let query = `SELECT * FROM students limit ${value.limit} offset ${value.limit}`
+      let query = `SELECT * FROM students`
+      console.log(query);
+      db.all(query, function(err, rows) {
+        if (!err) {//return callback(null, rows)
+          rows.forEach((data) => {
+            console.log(`${data.id}, ${data.first_name}, ${data.last_name}, ${data.id_cohorts}`);
+          })
+        } else console.log("tes : "+err);
+      })
+    })
+  }
+
+  static findAll_limit(conn, value = {}) {
+    db.serialize(function() {
+      let query = `SELECT * FROM students limit ${value.limit} offset ${value.offset}`
       console.log(query);
       db.all(query, function(err, rows) {
         if (!err) {//return callback(null, rows)
@@ -90,6 +103,36 @@ class Student {
         } else console.log("tes : "+err);
       })
     })
+  }
+
+  static findOrCreate(conn, value){
+    let query = `INSERT INTO students (first_name, last_name, id_cohorts) select '${value.first_name}', '${value.last_name}', ${value.id_cohorts}
+    WHERE NOT EXISTS (SELECT 1 FROM students WHERE first_name = '${value.first_name}' AND last_name='${value.last_name}' AND id_cohorts=${value.id_cohorts})`
+
+    db.serialize(function(){
+      db.run(query, function(err){
+        if (!err) console.log('success');
+        else console.log(err);
+      })
+    })
+  }
+
+
+  static help() {
+    console.log('\n');
+    console.log('===========================================================================================');
+    console.log('                                       MENU HELP                                           ');
+    console.log('===========================================================================================');
+    console.log('type :');
+    console.log('     create()                                                              : to add student');
+    console.log('     update()                                                  : to update value of student');
+    console.log('     delete()                                             : to delete data of student by id');
+    console.log('     findById()                       : to read first_name and last_name of student by name');
+    console.log('     findAll()                                       : to read data by attribute of student');
+    console.log('     findAll_limit()                                 : to read data by attribute of student');
+    console.log('     where()                            : to read data student those birthday in this month');
+    console.log('     findOrCreate()                                      : to create data if data not found');
+    console.log('===========================================================================================');
   }
 
 

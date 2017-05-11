@@ -10,6 +10,24 @@ Student.findAll(DBModel.connection,function(err,data){if(!err){for(var i =0; i <
 
 Student.where(DBModel.connection,'first_name = "windi"',function(err,data){if(!err){for(var i =0; i < data.length; i++){console.log(data[i])}}else{console.log(`Error`)}})
 
-Student.findAll(DBModel.connection,{limit:2,offset:1},function(err,data){if(!err){for(var i =0;i< data.length;i++){console.log(data[i])}}else{console.log(`Error`)}})
+Student.findAll_limit(DBModel.connection,{limit:2,offset:1},function(err,data){if(!err){for(var i =0;i< data.length;i++){console.log(data[i])}}else{console.log(`Error`)}})
 
 Student.findOrCreate(DBModel.connection, new Student('Windiana','Krismanuyar',1))
+
+
+
+Cohort.create(DBModel.connection, new Cohort('Windiana', 'Krismanuyar',1))
+
+Cohort.update(DBModel.connection, new Cohort('Windi','Krism',1,1))
+
+Cohort.delete(DBModel.connection,1)
+
+Cohort.findById(DBModel.connection,1)
+
+Cohort.findAll(DBModel.connection,function(err,data){if(!err){for(var i =0; i < data.length;i++){console.log(data[i])}}else{console.log(`Error`)}})
+
+Cohort.where(DBModel.connection,'first_name = "windi"',function(err,data){if(!err){for(var i =0; i < data.length; i++){console.log(data[i])}}else{console.log(`Error`)}})
+
+Cohort.findAll_limit(DBModel.connection,{limit:2,offset:1},function(err,data){if(!err){for(var i =0;i< data.length;i++){console.log(data[i])}}else{console.log(`Error`)}})
+
+Cohort.findOrCreate(DBModel.connection, new Cohort('Windiana','Krismanuyar',1))

@@ -16,3 +16,6 @@ replServer.context.Cohort = Cohort
 replServer.context.DBModel = DBModel
 replServer.context.Student = Student
 //dbModel.setup()
+
+Student.help()
+//Cohort.help()
