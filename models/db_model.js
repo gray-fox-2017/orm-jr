@@ -18,7 +18,7 @@ class DBModel {
     });
 
     this.connection.serialize(() => {
-      this.connection.run(`CREATE TABLE IF NOT EXISTS cohorts (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(30) UNIQUE);`, (err,result) => {
+      this.connection.run(`CREATE TABLE IF NOT EXISTS cohorts (id INTEGER PRIMARY KEY AUTOINCREMENT, cohort_name VARCHAR(30) UNIQUE);`, (err,result) => {
         if (err){
           console.log(err);
         } else {

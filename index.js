@@ -33,31 +33,31 @@ Student.where(dbModel.connection, "firstname = 'Windi'",function(err,data) {
       console.log(err, "Error");
     }
 });
-Student.delete(dbModel.connection, 1);
+// Student.delete(dbModel.connection, 1);
 
-// //name
-// Cohort.create(dbModel.connection, new Cohort("Happy Fox"));
-// //name,id
-// Cohort.update(dbModel.connection, new Cohort("Island Fox", 1));
+//name
+Cohort.create(dbModel.connection, new Cohort("Happy Fox"));
+//name,id
+Cohort.update(dbModel.connection, new Cohort("Island Fox", 1));
 // Cohort.delete(dbModel.connection, 1);
-// Cohort.findById(dbModel.connection,1);
-//
-// Cohort.findAll(dbModel.connection, function (err,data) {
-//   if(!err){
-//     for(var i = 0; i < data.length;i++){
-//       console.log(data[i]);
-//     }
-//   } else {
-//     console.log(err, "Error");
-//   }
-// })
-//
-// Cohort.where(dbModel.connection, "name = 'Island Fox'",function(err,data) {
-//     if(!err){
-//       for(var i = 0; i < data.length; i++){
-//         console.log(data[i]);
-//       }
-//     } else {
-//       console.log(err, "Error");
-//     }
-// });
+Cohort.findById(dbModel.connection,1);
+
+Cohort.findAll(dbModel.connection, function (err,data) {
+  if(!err){
+    for(var i = 0; i < data.length;i++){
+      console.log(data[i]);
+    }
+  } else {
+    console.log(err, "Error");
+  }
+})
+
+Cohort.where(dbModel.connection, "cohort_name = 'Island Fox'",function(err,data) {
+    if(!err){
+      for(var i = 0; i < data.length; i++){
+        console.log(data[i]);
+      }
+    } else {
+      console.log(err, "Error");
+    }
+});
