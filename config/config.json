@@ -1,0 +1,8 @@
+{
+  "development": {
+    "autoMigrateOldSchema": true,
+    "database": "./db/student.db",
+    "host": "127.0.0.1",
+    "dialect": "sqlite"
+  }
+}
