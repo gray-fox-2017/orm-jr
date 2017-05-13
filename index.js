@@ -7,8 +7,17 @@ const Cohort = require("./models/cohort.js");
 const sqlite3 = require('sqlite3').verbose();
 const repl = require('repl');
 
+// manual to use the student-cohort database
 const help = () => {
-  // manual to use the student-cohort database
+  console.log(`DOCUMENTATION \n
+  The following functions can be used to modify Students and Cohorts table. \n
+  If you'd like to modify Students table, please type Student.[function], otherwise, type Cohort.[function], e.g. Student.create or Cohort.delete.\n
+  create(database, student/cohort object) -> to add a record to the database. \n
+  update(database, student/cohort object) -> to update a record in the database. \n
+  delete(database, id) -> to delete a record based on its ID. \n
+  findById(database, id) -> to show data of a record based on its ID. \n
+  findAll(database, callback) -> to show all records in the database. \n
+  where(database, searchValue, callback) -> to show a record based on an attribute. \n`)
 }
 
 // take 'playtime' as the second argument vector to start REPL
