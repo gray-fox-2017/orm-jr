@@ -37,7 +37,7 @@ class Student {
             });
           }
           else {
-            console.log(`Data is not inserted since cohort doesn't exist. Please try with different cohorts id`);
+            console.log(`Data is not inserted since cohort doesn't exist. Please try with different cohorts id.`);
           }
         }
       });
@@ -48,25 +48,45 @@ class Student {
     let query = `UPDATE students SET first_name = '${student.first_name}', last_name = '${student.last_name}', cohorts_id = '${student.cohorts_id}' WHERE id = ${student.id}`;
     db.serialize(() => {
       db.run(query, (err) => {
-        (!err) ? console.log(`Student data is updated`) : console.log(err)
+        (!err) ? console.log(`Student data is updated.`) : console.log(err)
       });
     });
   }
 
   static delete(db, id) {
-
+    let query = `DELETE FROM students WHERE id = ${id};`
+    db.serialize(() => {
+      db.run(query, (err) => {
+        (!err) ? console.log(`Student data is deleted.`) : console.log(err)
+      });
+    });
   }
 
   static findById(db, id) {
-
+    let query = `SELECT * FROM students WHERE id = ${id};`
+    db.serialize(() => {
+      db.all(query, (err,rows) => {
+        (!err) ? console.log(rows) : console.log(err)
+      });
+    });
   }
 
   static findAll(db, callback) {
-
+    let query = `SELECT * FROM students;`
+    db.serialize(() => {
+      db.all(query, (err,rows) => {
+        callback(rows,err);
+      });
+    });
   }
 
   static where(db, searchValue, callback) {
-
+    let query = `SELECT * FROM students WHERE ${searchValue};`
+    db.serialize(() => {
+      db.all(query, (err,rows) => {
+        callback(rows,err);
+      });
+    });
   }
 }
 

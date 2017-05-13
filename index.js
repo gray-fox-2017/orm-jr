@@ -2,7 +2,7 @@
 
 const DBModel = require("./models/db_model.js");
 const Student = require("./models/student.js");
-//const Cohort = require("./models/cohorts.js");
+const Cohort = require("./models/cohort.js");
 
 const sqlite3 = require('sqlite3').verbose();
 const repl = require('repl');
@@ -25,5 +25,6 @@ if (indexPlaytime === 'playtime') {
   replServer.context.dbModel = dbModel;
   replServer.context.help = help;
   replServer.context.Student = Student;
+  replServer.context.Cohort = Cohort;
 }
 
