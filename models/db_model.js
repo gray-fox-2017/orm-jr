@@ -24,7 +24,5 @@ class DBModel {
     });
   }
 }
-var dbModel = new DBModel('./db/student.db');
 
-console.log(dbModel.connection)
 module.exports = DBModel;

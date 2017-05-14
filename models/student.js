@@ -1,5 +1,6 @@
 "use strict"
 const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./db/student.db');
 
 class Student {
   constructor(firstname, lastname, cohort, id) {
@@ -9,7 +10,7 @@ class Student {
     this.id = id;
   }
 
-  static create(db, obj) {
+  static create(obj) {
     let query = `INSERT INTO student (firstname, lastname, cohort_id) VALUES ('${obj.firstname}', '${obj.lastname}', ${obj.cohort});`
     db.serialize(function () {
       db.run(query, function(err) {
@@ -19,7 +20,7 @@ class Student {
     })
   }
 
-  static update(db, obj) {
+  static update(obj) {
     let query = `UPDATE student SET firstname = '${obj.firstname}', lastname = '${obj.lastnama}' WHERE id = ${obj.id}`
     db.serialize(function () {
       dr.run(query, function(err) {
@@ -29,7 +30,7 @@ class Student {
     })
   }
 
-  static delete(db, id) {
+  static delete(id) {
     let query = `DELETE FROM student WHERE id = ${id}`
     db.serialize(function () {
       db.run(query, function(err) {
@@ -39,7 +40,7 @@ class Student {
     })
   }
 
-  static findByID(db, id) {
+  static findByID(id) {
     let query = `SELECT * FROM student WHERE id = ${id}`
     db.serialize(function () {
       db.all(query, function(err,row) {
@@ -52,7 +53,7 @@ class Student {
     })
   }
 
-  static cariSemua(db) {
+  static cariSemua() {
     let query = `SELECT * FROM student`
     return new Promise(function(resolve, reject) {
       db.serialize(() => {
@@ -64,17 +65,17 @@ class Student {
     })
   }
 
-  static findAll(db) {
-    this.cariSemua(db)
+  static findAll() {
+    Student.cariSemua()
     .then( row => {
       for (let i = 0; i<row.length;i++) {
-        console.log(row[i]);
+        console.log(`${i+1}. ${row[i].firstname} ${row[i].lastname}`);
       }
     })
     .catch( err => console.log(err));
   }
 
-  static pilter(db, str) {
+  static pilter(str) {
     let query = `SELECT * FROM student WHERE ${str}`
     return new Promise(function(resolve, reject) {
       db.serialize(function() {
@@ -86,19 +87,17 @@ class Student {
     })
   }
 
-  static where(db, str) {
-    this.pilter(db, str)
+  static where(str) {
+    Student.pilter(str)
     .then( row => {
       for (let i = 0; i < row.length; i++) {
-        console.log(row[i]);
+        console.log(`${i+1}. ${row[i].firstname} ${row[i].lastname}`);
       }
     })
     .catch( err => console.log(err));
   }
 
 }
-let db = new sqlite3.Database('./db/student.db')
+
 // Student.create(db, new Student('Saiful', 'Juki', 1))
-Student.findAll(db)
-Student.where(db, "firstname = 'Sidik' ")
 module.exports = Student;

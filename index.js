@@ -18,5 +18,15 @@ if (input[2] == 'playtime'){
 }
 
 var dbModel = new DBModel('./db/student.db');
-replserver.context.buat = dbModel;
+
+replserver.context.buat_table = dbModel;
+replserver.context.add_student= Student.create;
+replserver.context.update_student = Student.update;
+replserver.context.delete_student = Student.delete;
+replserver.context.find_id = Student.findByID;
+replserver.context.find_all = Student.findAll;
+
+
+
+
 
