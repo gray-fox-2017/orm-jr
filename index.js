@@ -17,8 +17,8 @@ const help = () => {
   delete(database, id) -> to delete a record based on its ID. \n
   findById(database, id) -> to show data of a record based on its ID. \n
   findAll(database, callback) -> to show all records in the database. \n
-  where(database, searchValue, callback) -> to show a record based on an attribute. \n`)
-}
+  where(database, searchValue, callback) -> to show a record based on an attribute. \n`);
+};
 
 // take 'playtime' as the second argument vector to start REPL
 let indexPlaytime = process.argv[2];
