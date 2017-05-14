@@ -18,7 +18,7 @@ function help() {
   console.log('2. Use <update> to update data, e.g. Student.update(dbModel.connection, {id: 1, firstname: "Johnny", lastname: "Do", cohort_id: 2})')
   console.log('3. Use <delete> to delete data, e.g. Student.delete(dbModel.connection, 1)')
   console.log('4. Use <findById> to find a certain data, e.g. Student.findById(dbModel.connection, 1)')
-  console.log('5. Use <findAll> to show all data, e.g. Student.update(dbModel.connection, callback, {limit: 10, offset: 0})')
+  console.log('5. Use <findAll> to show all data, e.g. Student.findAll(dbModel.connection, callback, [{limit: 10, offset: 0}]). Limit input is optional, this function works without its last parameter.')
   console.log('6. Use <where> to find data with certain attribute and value, e.g. Student.where(dbModel.connection, "firstname = \'John\'", callback)')
 }
 
