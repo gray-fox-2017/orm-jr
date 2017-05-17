@@ -10,10 +10,10 @@ const repl = require('repl');
 let db = new DBModel("./db/student.db");
 let argv = process.argv[2];
 
-// function help() {
-//   let show = `dbModel\ndbModel.setup()`
-//   console.log(show);
-// }
+function help() {
+  let show = `dbModel\ndbModel.setup()`
+  console.log(show);
+}
 
 if (argv === 'playtime') {
   let command = repl.start('>> ');
@@ -21,7 +21,7 @@ if (argv === 'playtime') {
   command.context.Student = Student;
   command.context.StudentHelp = Student.help;
   command.context.Cohort = Cohort;
-  // command.context.help = help;
+  command.context.help = help;
 
 }
 

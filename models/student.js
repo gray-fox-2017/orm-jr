@@ -104,7 +104,9 @@ static findOrCreate(db, student){
 
 
 static where(db,value,callback){
-  let show = `SELECT * FROM students WHERE firstname = '${value}'`;
+  let arr = value.split(' = ');
+  console.log(arr);
+  let show = `SELECT * FROM students WHERE ${arr[0]} = ${arr[1]}`;
   db.serialize(function(){
     db.all(show, function(err,rows){
       if (err) {
